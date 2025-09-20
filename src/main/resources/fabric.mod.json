@@ -5,13 +5,13 @@
 	"name": "Show Me",
 	"description": "Mostra no HUD apenas as informações que você quiser (coords, ping, FPS, etc.) sem precisar do F3.",
 	"authors": [
-		"Danger_Loki"
+		"Danger_Loki, RaijinBr"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://github.com/DangerLoki/mod-mine-show-me",
+		"sources": "https://github.com/DangerLoki/mod-mine-show-me"
 	},
-	"license": "CC-BY-NC-4.0",
+	"license": "MIT",
 	"icon": "assets/modid/icon.png",
 	"environment": "client",
 	"entrypoints": {
