@@ -12,6 +12,8 @@ import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.LightType;
+import net.minecraft.world.biome.Biome;
+
 import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
@@ -88,6 +90,14 @@ public class ShowMeClient implements ClientModInitializer {
             var days = mc.world.getTimeOfDay() / 24000L;
             lines.add(String.format("Dia: %d", days));
 
+        }
+
+        if (CONFIG.showBiome) {
+            var biome = mc.world.getBiome(mc.player.getBlockPos())
+                    .getKey()
+                    .map(key -> key.getValue().toString())
+                    .orElse("Desconhecido");
+            lines.add(String.format("Bioma: %s", biome));
         }
 
         if (lines.isEmpty())

@@ -15,6 +15,7 @@ public class ShowMeConfigScreen extends Screen {
     private boolean showCoords;
     private boolean showBrightness;
     private boolean showDays;
+    private boolean showBiome;
 
     protected ShowMeConfigScreen(Screen parent) {
         super(Text.literal("Show Me - Configurações"));
@@ -28,6 +29,7 @@ public class ShowMeConfigScreen extends Screen {
         this.showCoords = ShowMeClient.CONFIG.showCoords;
         this.showBrightness = ShowMeClient.CONFIG.showBrightness;
         this.showDays = ShowMeClient.CONFIG.showDays;
+        this.showBiome = ShowMeClient.CONFIG.showBiome;
 
         int centerX = this.width / 2;
         int y = 60;
@@ -60,10 +62,19 @@ public class ShowMeConfigScreen extends Screen {
         y += 24;
 
         addDrawableChild(ButtonWidget.builder(
-                Text.literal(label("Mostrar dias", showDays)),
+                Text.literal(label("Mostrar Dias", showDays)),
                 b -> {
                     showDays = !showDays;
                     b.setMessage(Text.literal(label("Mostrar dias", showDays)));
+                }).dimensions(centerX - 100, y, 200, 20).build());
+
+        y += 24;
+
+        addDrawableChild(ButtonWidget.builder(
+                Text.literal(label("Mostrar Bioma", showBiome)),
+                b -> {
+                    showBiome = !showBiome;
+                    b.setMessage(Text.literal(label("Mostrar Bioma", showBiome)));
                 }).dimensions(centerX - 100, y, 200, 20).build());
 
         y += 32;
@@ -73,6 +84,7 @@ public class ShowMeConfigScreen extends Screen {
             ShowMeClient.CONFIG.showCoords = showCoords;
             ShowMeClient.CONFIG.showBrightness = showBrightness;
             ShowMeClient.CONFIG.showDays = showDays;
+            ShowMeClient.CONFIG.showBiome = showBiome;
             ShowMeConfig.save(ShowMeClient.CONFIG);
             close();
         }).dimensions(centerX - 100, y, 95, 20).build());

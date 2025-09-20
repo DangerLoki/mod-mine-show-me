@@ -3,7 +3,7 @@ coordenadas: OK
 brilhos: OK
 biomas:
 ping:
-dias:
+dias: OK
 
 
 **performance**
