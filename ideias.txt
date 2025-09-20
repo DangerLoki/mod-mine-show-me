@@ -1,9 +1,10 @@
 **informacoes do jogo**
 coordenadas: OK
 brilhos: OK
-biomas:
+biomas: 
 ping:
-dias:
+dias: OK
+Horario:
 
 
 **performance**
