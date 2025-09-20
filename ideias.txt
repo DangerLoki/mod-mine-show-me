@@ -8,6 +8,6 @@ dias:
 
 **performance**
 fps: OK
-memoria: 
+memoria:
 processador:
 gpu:
