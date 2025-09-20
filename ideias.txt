@@ -1,0 +1,14 @@
+**informacoes do jogo**
+coordenadas: OK
+brilhos: OK
+biomas: OK
+dias: OK
+Horario:
+ping:
+
+
+**performance**
+fps: OK
+memoria:
+processador:
+gpu:
