@@ -19,6 +19,7 @@ public class ShowMeConfig {
     public boolean showPing = false;
     public boolean showTime = false;
     public boolean showBrightness = false; // novo campo para brilho do bloco/céu
+    public boolean showDays = false;
 
     public static ShowMeConfig load() {
         if (Files.exists(CONFIG_PATH)) {
