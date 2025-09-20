@@ -5,6 +5,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 
 public class ShowMeConfigScreen extends Screen {
@@ -35,51 +36,51 @@ public class ShowMeConfigScreen extends Screen {
         int y = 60;
 
         addDrawableChild(ButtonWidget.builder(
-                Text.literal(label("Mostrar FPS", showFps)),
+                label("key.menu.showFps", showFps),
                 b -> {
                     showFps = !showFps;
-                    b.setMessage(Text.literal(label("Mostrar FPS", showFps)));
+                    b.setMessage(label("key.menu.showFps", showFps));
                 }).dimensions(centerX - 100, y, 200, 20).build());
 
         y += 24;
 
         addDrawableChild(ButtonWidget.builder(
-                Text.literal(label("Mostrar Coordenadas", showCoords)),
+                label("key.menu.showCoordinates", showCoords),
                 b -> {
                     showCoords = !showCoords;
-                    b.setMessage(Text.literal(label("Mostrar Coordenadas", showCoords)));
+                    b.setMessage(label("key.menu.showCoordinates", showCoords));
                 }).dimensions(centerX - 100, y, 200, 20).build());
 
         y += 24;
 
         addDrawableChild(ButtonWidget.builder(
-                Text.literal(label("Mostrar Brilho", showBrightness)),
+                label("key.menu.showBrightness", showBrightness),
                 b -> {
                     showBrightness = !showBrightness;
-                    b.setMessage(Text.literal(label("Mostrar Brilho", showBrightness)));
+                    b.setMessage(label("key.menu.showBrightness", showBrightness));
                 }).dimensions(centerX - 100, y, 200, 20).build());
 
         y += 24;
 
         addDrawableChild(ButtonWidget.builder(
-                Text.literal(label("Mostrar Dias", showDays)),
+                label("key.menu.showDays", showDays),
                 b -> {
                     showDays = !showDays;
-                    b.setMessage(Text.literal(label("Mostrar dias", showDays)));
+                    b.setMessage(label("key.menu.showDays", showDays));
                 }).dimensions(centerX - 100, y, 200, 20).build());
 
         y += 24;
 
         addDrawableChild(ButtonWidget.builder(
-                Text.literal(label("Mostrar Bioma", showBiome)),
+                label("key.menu.showBiome", showBiome),
                 b -> {
                     showBiome = !showBiome;
-                    b.setMessage(Text.literal(label("Mostrar Bioma", showBiome)));
+                    b.setMessage(label("key.menu.showBiome", showBiome));
                 }).dimensions(centerX - 100, y, 200, 20).build());
 
         y += 32;
 
-        addDrawableChild(ButtonWidget.builder(Text.literal("Salvar"), b -> {
+        addDrawableChild(ButtonWidget.builder(Text.translatable("key.save"), b -> {
             ShowMeClient.CONFIG.showFps = showFps;
             ShowMeClient.CONFIG.showCoords = showCoords;
             ShowMeClient.CONFIG.showBrightness = showBrightness;
@@ -89,13 +90,14 @@ public class ShowMeConfigScreen extends Screen {
             close();
         }).dimensions(centerX - 100, y, 95, 20).build());
 
-        addDrawableChild(ButtonWidget.builder(Text.literal("Cancelar"), b -> {
+        addDrawableChild(ButtonWidget.builder(Text.translatable("key.cancel"), b -> {
             close();
         }).dimensions(centerX + 5, y, 95, 20).build());
     }
 
-    private String label(String base, boolean v) {
-        return base + ": " + (v ? "Ligado" : "Desligado");
+    private Text label(String base, boolean v) {
+        return Text.translatable(base).append(": ")
+                .append(v ? Text.translatable("key.on") : Text.translatable("key.off"));
     }
 
     @Override

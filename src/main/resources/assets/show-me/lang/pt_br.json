@@ -1,5 +1,20 @@
 {
 	"key.categories.showme": "Show Me",
 	"key.showme.toggle": "Alternar HUD",
-	"key.showme.open_menu": "Abrir Menu de Configuração"
+	"key.showme.open_menu": "Abrir Menu de Configuração",
+	"key.on":"Ligado",
+	"key.off":"Desligado",
+	"key.save":"Salvar",
+	"key.cancel":"Cancelar",
+	"key.menu.showFps": "Mostrar FPS",
+	"key.menu.showCoordinates" : "Mostrar Coordenadas",
+	"key.menu.showBrightness" : "Mostrar Brilho",
+	"key.menu.showDays" : "Mostrar Dia",
+	"key.menu.showBiome" : "Mostrar Bioma",
+	"key.hud.visible" : "Visível",
+	"key.hud.hidden" : "Oculto",
+	"key.hud.day" : "Dia: %d",
+	"key.hud.biome" : "Bioma: %s",
+	"key.hud.unknownBiome" : "Desconhecido",
+	"key.hud.brightness" : "Luz (Bloco/Céu) %d / %d"
 }

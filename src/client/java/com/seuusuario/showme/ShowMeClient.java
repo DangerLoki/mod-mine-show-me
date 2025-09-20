@@ -12,7 +12,6 @@ import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.LightType;
-import net.minecraft.world.biome.Biome;
 
 import org.lwjgl.glfw.GLFW;
 
@@ -25,6 +24,12 @@ public class ShowMeClient implements ClientModInitializer {
     private static boolean hudEnabled = true;
     private static KeyBinding toggleHudKey;
     private static KeyBinding openMenuKey;
+
+    private static void toast(MinecraftClient mc, String msg) {
+        if (mc != null && mc.player != null) {
+            mc.player.sendMessage(Text.literal("[Show Me] " + msg), true);
+        }
+    }
 
     @Override
     public void onInitializeClient() {
@@ -44,13 +49,12 @@ public class ShowMeClient implements ClientModInitializer {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (toggleHudKey.wasPressed()) {
                 hudEnabled = !hudEnabled;
-                toast(client, "HUD " + (hudEnabled ? "visível" : "oculto"));
-                System.out.println("[ShowMe] Tecla x pressionada - HUD: " + hudEnabled);
+                toast(client, "HUD "
+                        + (hudEnabled ? Text.translatable("key.hud.visible").getString()
+                                : Text.translatable("key.hud.hidden").getString()));
             }
             while (openMenuKey.wasPressed()) {
-                System.out.println("[ShowMe] Tecla z pressionada - Tentando abrir menu");
                 if (client.currentScreen == null) {
-                    System.out.println("[ShowMe] Abrindo tela de configuração");
                     client.setScreen(new ShowMeConfigScreen(client.currentScreen));
                 } else {
                     System.out.println("[ShowMe] Não pode abrir - já há uma tela aberta: "
@@ -83,12 +87,12 @@ public class ShowMeClient implements ClientModInitializer {
             BlockPos pos = mc.player.getBlockPos();
             int blockLight = mc.world.getLightLevel(LightType.BLOCK, pos);
             int skyLight = mc.world.getLightLevel(LightType.SKY, pos);
-            lines.add(String.format("Luz B/S: %d / %d", blockLight, skyLight));
+            lines.add(Text.translatable("key.hud.brightness", blockLight, skyLight).getString());
         }
 
         if (CONFIG.showDays) {
             var days = mc.world.getTimeOfDay() / 24000L;
-            lines.add(String.format("Dia: %d", days));
+            lines.add(Text.translatable("key.hud.day", days).getString());
 
         }
 
@@ -97,7 +101,7 @@ public class ShowMeClient implements ClientModInitializer {
                     .getKey()
                     .map(key -> key.getValue().toString())
                     .orElse("Desconhecido");
-            lines.add(String.format("Bioma: %s", biome));
+            lines.add(Text.translatable("key.hud.biome", biome).getString());
         }
 
         if (lines.isEmpty())
@@ -126,9 +130,4 @@ public class ShowMeClient implements ClientModInitializer {
         }
     }
 
-    private static void toast(MinecraftClient mc, String msg) {
-        if (mc != null && mc.player != null) {
-            mc.player.sendMessage(Text.literal("[Show Me] " + msg), true);
-        }
-    }
 }

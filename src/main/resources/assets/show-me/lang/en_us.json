@@ -1,5 +1,20 @@
 {
 	"key.categories.showme": "Show Me",
 	"key.showme.toggle": "Toggle HUD",
-	"key.showme.open_menu": "Open Configuration Menu"
+	"key.showme.open_menu": "Open Configuration Menu",
+	"key.on":"On",
+	"key.off":"Off",
+	"key.save":"Save",
+	"key.cancel":"Cancel",
+	"key.menu.showFps": "Show FPS",
+	"key.menu.showCoordinates" : "Show Coordinates",
+	"key.menu.showBrightness" : "Show Brightness",
+	"key.menu.showDays" : "Show Day",
+	"key.menu.showBiome" : "Show Biome",
+	"key.hud.visible" : "Visible",
+	"key.hud.hidden" : "Hidden",
+	"key.hud.day" : "Day: %d",
+	"key.hud.biome" : "Biome: %s",
+	"key.hud.unknownBiome" : "Unknown",
+	"key.hud.brightness" : "Brightness (Block/Sky) %d / %d"
 }
