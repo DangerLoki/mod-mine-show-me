@@ -1,0 +1,38 @@
+{
+	"schemaVersion": 1,
+	"id": "show-me",
+	"version": "${version}",
+	"name": "Show Me",
+	"description": "Mostra no HUD apenas as informações que você quiser (coords, ping, FPS, etc.) sem precisar do F3.",
+	"authors": [
+		"Danger_Loki"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC-BY-NC-4.0",
+	"icon": "assets/modid/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"com.seuusuario.showme.ShowMeClient"
+		]
+	},
+	"mixins": [
+		"modid.mixins.json",
+		{
+			"config": "modid.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.16.14",
+		"minecraft": "~1.21.8",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
