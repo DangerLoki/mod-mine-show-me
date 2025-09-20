@@ -51,7 +51,8 @@ public class ShowMeClient implements ClientModInitializer {
                     System.out.println("[ShowMe] Abrindo tela de configuração");
                     client.setScreen(new ShowMeConfigScreen(client.currentScreen));
                 } else {
-                    System.out.println("[ShowMe] Não pode abrir - já há uma tela aberta: " + client.currentScreen.getClass().getSimpleName());
+                    System.out.println("[ShowMe] Não pode abrir - já há uma tela aberta: "
+                            + client.currentScreen.getClass().getSimpleName());
                 }
             }
         });
@@ -60,9 +61,11 @@ public class ShowMeClient implements ClientModInitializer {
     }
 
     private static void renderHud(DrawContext ctx) {
-        if (!hudEnabled) return;
+        if (!hudEnabled)
+            return;
         final var mc = MinecraftClient.getInstance();
-        if (mc == null || mc.player == null || mc.world == null) return;
+        if (mc == null || mc.player == null || mc.world == null)
+            return;
 
         var font = mc.textRenderer;
         List<String> lines = new ArrayList<>();
@@ -81,7 +84,14 @@ public class ShowMeClient implements ClientModInitializer {
             lines.add(String.format("Luz B/S: %d / %d", blockLight, skyLight));
         }
 
-        if (lines.isEmpty()) return;
+        if (CONFIG.showDays) {
+            var days = mc.world.getTimeOfDay() / 24000L;
+            lines.add(String.format("Dia: %d", days));
+
+        }
+
+        if (lines.isEmpty())
+            return;
 
         int paddingX = 4;
         int paddingY = 3;
@@ -92,7 +102,8 @@ public class ShowMeClient implements ClientModInitializer {
         int maxWidth = 0;
         for (String l : lines) {
             int w = font.getWidth(l);
-            if (w > maxWidth) maxWidth = w;
+            if (w > maxWidth)
+                maxWidth = w;
         }
         int totalHeight = lines.size() * font.fontHeight + (lines.size() - 1) * lineSpacing;
 

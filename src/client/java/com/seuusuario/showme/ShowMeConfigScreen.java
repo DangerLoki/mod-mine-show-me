@@ -14,6 +14,7 @@ public class ShowMeConfigScreen extends Screen {
     private boolean showFps;
     private boolean showCoords;
     private boolean showBrightness;
+    private boolean showDays;
 
     protected ShowMeConfigScreen(Screen parent) {
         super(Text.literal("Show Me - Configurações"));
@@ -26,6 +27,7 @@ public class ShowMeConfigScreen extends Screen {
         this.showFps = ShowMeClient.CONFIG.showFps;
         this.showCoords = ShowMeClient.CONFIG.showCoords;
         this.showBrightness = ShowMeClient.CONFIG.showBrightness;
+        this.showDays = ShowMeClient.CONFIG.showDays;
 
         int centerX = this.width / 2;
         int y = 60;
@@ -35,8 +37,7 @@ public class ShowMeConfigScreen extends Screen {
                 b -> {
                     showFps = !showFps;
                     b.setMessage(Text.literal(label("Mostrar FPS", showFps)));
-                }
-        ).dimensions(centerX - 100, y, 200, 20).build());
+                }).dimensions(centerX - 100, y, 200, 20).build());
 
         y += 24;
 
@@ -45,8 +46,7 @@ public class ShowMeConfigScreen extends Screen {
                 b -> {
                     showCoords = !showCoords;
                     b.setMessage(Text.literal(label("Mostrar Coordenadas", showCoords)));
-                }
-        ).dimensions(centerX - 100, y, 200, 20).build());
+                }).dimensions(centerX - 100, y, 200, 20).build());
 
         y += 24;
 
@@ -55,8 +55,16 @@ public class ShowMeConfigScreen extends Screen {
                 b -> {
                     showBrightness = !showBrightness;
                     b.setMessage(Text.literal(label("Mostrar Brilho", showBrightness)));
-                }
-        ).dimensions(centerX - 100, y, 200, 20).build());
+                }).dimensions(centerX - 100, y, 200, 20).build());
+
+        y += 24;
+
+        addDrawableChild(ButtonWidget.builder(
+                Text.literal(label("Mostrar dias", showDays)),
+                b -> {
+                    showDays = !showDays;
+                    b.setMessage(Text.literal(label("Mostrar dias", showDays)));
+                }).dimensions(centerX - 100, y, 200, 20).build());
 
         y += 32;
 
@@ -64,6 +72,7 @@ public class ShowMeConfigScreen extends Screen {
             ShowMeClient.CONFIG.showFps = showFps;
             ShowMeClient.CONFIG.showCoords = showCoords;
             ShowMeClient.CONFIG.showBrightness = showBrightness;
+            ShowMeClient.CONFIG.showDays = showDays;
             ShowMeConfig.save(ShowMeClient.CONFIG);
             close();
         }).dimensions(centerX - 100, y, 95, 20).build());
