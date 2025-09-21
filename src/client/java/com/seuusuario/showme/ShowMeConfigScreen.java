@@ -4,9 +4,10 @@ package com.seuusuario.showme;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.ButtonWidget;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+
+import com.seuusuario.showme.ShowMeConfig.Position;
+import com.seuusuario.showme.components.ButtonScheema;
 
 public class ShowMeConfigScreen extends Screen {
     private final Screen parent;
@@ -17,6 +18,9 @@ public class ShowMeConfigScreen extends Screen {
     private boolean showBrightness;
     private boolean showDays;
     private boolean showBiome;
+    private Position togglePosition;
+
+    private boolean showDebug;
 
     protected ShowMeConfigScreen(Screen parent) {
         super(Text.literal("Show Me - Configurações"));
@@ -31,73 +35,47 @@ public class ShowMeConfigScreen extends Screen {
         this.showBrightness = ShowMeClient.CONFIG.showBrightness;
         this.showDays = ShowMeClient.CONFIG.showDays;
         this.showBiome = ShowMeClient.CONFIG.showBiome;
+        this.togglePosition = ShowMeClient.CONFIG.togglePosition;
+        this.showDebug = ShowMeClient.CONFIG.showDebug;
 
         int centerX = this.width / 2;
-        int y = 60;
 
-        addDrawableChild(ButtonWidget.builder(
-                label("key.menu.showFps", showFps),
-                b -> {
-                    showFps = !showFps;
-                    b.setMessage(label("key.menu.showFps", showFps));
-                }).dimensions(centerX - 100, y, 200, 20).build());
+        ButtonScheema bs = new ButtonScheema(x -> addDrawableChild(x))
+                .setX(centerX)
+                .setY(60)
+                .setSpacing(24)
+                .setWidth(200)
+                .setHeight(20);
 
-        y += 24;
+        bs.newSwitchButton("key.menu.showFps", () -> showFps, v -> showFps = v);
 
-        addDrawableChild(ButtonWidget.builder(
-                label("key.menu.showCoordinates", showCoords),
-                b -> {
-                    showCoords = !showCoords;
-                    b.setMessage(label("key.menu.showCoordinates", showCoords));
-                }).dimensions(centerX - 100, y, 200, 20).build());
+        bs.newSwitchButton("key.menu.showCoordinates", () -> showCoords, v -> showCoords = v);
 
-        y += 24;
+        bs.newSwitchButton("key.menu.showBrightness", () -> showBrightness, v -> showBrightness = v);
 
-        addDrawableChild(ButtonWidget.builder(
-                label("key.menu.showBrightness", showBrightness),
-                b -> {
-                    showBrightness = !showBrightness;
-                    b.setMessage(label("key.menu.showBrightness", showBrightness));
-                }).dimensions(centerX - 100, y, 200, 20).build());
+        bs.newSwitchButton("key.menu.showDays", () -> showDays, v -> showDays = v);
 
-        y += 24;
+        bs.newSwitchButton("key.menu.showBiome", () -> showBiome, v -> showBiome = v);
 
-        addDrawableChild(ButtonWidget.builder(
-                label("key.menu.showDays", showDays),
-                b -> {
-                    showDays = !showDays;
-                    b.setMessage(label("key.menu.showDays", showDays));
-                }).dimensions(centerX - 100, y, 200, 20).build());
+        bs.newSwitchButton("key.menu.showDebug", () -> showDebug, v -> showDebug = v);
 
-        y += 24;
+        bs.setSpacing(32); // Ultimo botão precisa ter um espaçamento maior
+        bs.newToggleButton("key.menu.togglePosition", () -> togglePosition, v -> togglePosition = v);
 
-        addDrawableChild(ButtonWidget.builder(
-                label("key.menu.showBiome", showBiome),
-                b -> {
-                    showBiome = !showBiome;
-                    b.setMessage(label("key.menu.showBiome", showBiome));
-                }).dimensions(centerX - 100, y, 200, 20).build());
-
-        y += 32;
-
-        addDrawableChild(ButtonWidget.builder(Text.translatable("key.save"), b -> {
+        bs.newCustomButton("key.save", b -> {
             ShowMeClient.CONFIG.showFps = showFps;
             ShowMeClient.CONFIG.showCoords = showCoords;
             ShowMeClient.CONFIG.showBrightness = showBrightness;
             ShowMeClient.CONFIG.showDays = showDays;
             ShowMeClient.CONFIG.showBiome = showBiome;
+            ShowMeClient.CONFIG.togglePosition = togglePosition;
+            ShowMeClient.CONFIG.showDebug = showDebug;
             ShowMeConfig.save(ShowMeClient.CONFIG);
             close();
-        }).dimensions(centerX - 100, y, 95, 20).build());
+        }, centerX - 100, bs.getY(), 95, 20);
 
-        addDrawableChild(ButtonWidget.builder(Text.translatable("key.cancel"), b -> {
-            close();
-        }).dimensions(centerX + 5, y, 95, 20).build());
-    }
+        bs.newCustomButton("key.cancel", b -> close(), centerX + 5, bs.getY(), 92, 20);
 
-    private Text label(String base, boolean v) {
-        return Text.translatable(base).append(": ")
-                .append(v ? Text.translatable("key.on") : Text.translatable("key.off"));
     }
 
     @Override

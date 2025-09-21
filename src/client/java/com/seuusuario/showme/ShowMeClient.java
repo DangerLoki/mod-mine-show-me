@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.Text;
@@ -19,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ShowMeClient implements ClientModInitializer {
+    private static final int CHAT_SIZE = 140;
+
     public static ShowMeConfig CONFIG = ShowMeConfig.load();
 
     private static boolean hudEnabled = true;
@@ -75,6 +78,7 @@ public class ShowMeClient implements ClientModInitializer {
 
         var font = mc.textRenderer;
         List<String> lines = new ArrayList<>();
+        List<String> debugLines = new ArrayList<>();
 
         if (CONFIG.showFps) {
             lines.add("FPS: " + mc.getCurrentFps());
@@ -93,7 +97,6 @@ public class ShowMeClient implements ClientModInitializer {
         if (CONFIG.showDays) {
             var days = mc.world.getTimeOfDay() / 24000L;
             lines.add(Text.translatable("key.hud.day", days).getString());
-
         }
 
         if (CONFIG.showBiome) {
@@ -106,13 +109,29 @@ public class ShowMeClient implements ClientModInitializer {
 
         if (lines.isEmpty())
             return;
+        int width = ctx.getScaledWindowWidth();
+        debugLines.add(String.format("Windows Width: %d", width));
+        int height = ctx.getScaledWindowHeight();
+        debugLines.add(String.format("Window Height: %d", height));
 
         int paddingX = 4;
         int paddingY = 3;
         int lineSpacing = 2;
-        int x = 6;
-        int y = 6;
+        int margin = 3;
 
+        var chatHud = mc.inGameHud.getChatHud();
+        int chatLines = chatHud.getVisibleLineCount();
+        debugLines.add(String.format("Chat Line Count: %d", chatLines));
+        double chatScale = chatHud.getChatScale();
+        debugLines.add(String.format("Chat Scale: %f", chatScale));
+        int chatHeight = (int) ((chatLines * font.fontHeight) * chatScale);
+        debugLines.add(String.format("Calculated ChatHeight: %d", chatHeight));
+
+        if (CONFIG.showDebug) {
+            lines.addAll(debugLines);
+        }
+
+        // Calcula tamanho do overlay
         int maxWidth = 0;
         for (String l : lines) {
             int w = font.getWidth(l);
@@ -120,14 +139,42 @@ public class ShowMeClient implements ClientModInitializer {
                 maxWidth = w;
         }
         int totalHeight = lines.size() * font.fontHeight + (lines.size() - 1) * lineSpacing;
+        // Calcula posição inicial com margin
+        int x, y;
+        switch (CONFIG.togglePosition) {
+            case TOP_RIGHT:
+                x = width - maxWidth - paddingX - margin;
+                y = margin + paddingY;
+                break;
+            case BOTTOM_RIGHT:
+                x = width - maxWidth - paddingX - margin;
+                y = height - totalHeight - paddingY - margin;
+                break;
+            case BOTTOM_LEFT:
+                x = margin + paddingX;
+                y = height - totalHeight - chatHeight - 50 - paddingY - margin;
 
-        ctx.fill(x - paddingX, y - paddingY, x + maxWidth + paddingX, y + totalHeight + paddingY, 0x88000000);
+                break;
+            case TOP_LEFT:
+            default:
+                x = margin + paddingX;
+                y = margin + paddingY;
+        }
 
+        debugLines.add(String.format("Calculated y: %d", y));
+        // Desenha background
+        ctx.fill(
+                x - paddingX,
+                y - paddingY,
+                x + maxWidth + paddingX,
+                y + totalHeight + paddingY,
+                0x88000000);
+
+        // Desenha cada linha
         int drawY = y;
         for (String l : lines) {
             ctx.drawTextWithShadow(font, l, x, drawY, 0xFFFFFFFF);
             drawY += font.fontHeight + lineSpacing;
         }
     }
-
 }

@@ -12,6 +12,13 @@ public class ShowMeConfig {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static final Path CONFIG_PATH = FabricLoader.getInstance().getConfigDir().resolve("show-me.json");
 
+    public enum Position {
+        TOP_LEFT,
+        TOP_RIGHT,
+        BOTTOM_RIGHT,
+        BOTTOM_LEFT
+    }
+
     // Configurações do HUD
     public boolean showFps = true;
     public boolean showCoords = false;
@@ -20,6 +27,9 @@ public class ShowMeConfig {
     public boolean showTime = false;
     public boolean showBrightness = false; // novo campo para brilho do bloco/céu
     public boolean showDays = false;
+    public Position togglePosition = Position.TOP_LEFT;
+
+    public boolean showDebug = false;
 
     public static ShowMeConfig load() {
         if (Files.exists(CONFIG_PATH)) {
