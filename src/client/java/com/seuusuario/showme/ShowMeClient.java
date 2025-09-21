@@ -110,7 +110,7 @@ public class ShowMeClient implements ClientModInitializer {
         if (lines.isEmpty())
             return;
         int width = ctx.getScaledWindowWidth();
-        debugLines.add(String.format("Windows Width: %d", width));
+        debugLines.add(String.format("Window Width: %d", width));
         int height = ctx.getScaledWindowHeight();
         debugLines.add(String.format("Window Height: %d", height));
 

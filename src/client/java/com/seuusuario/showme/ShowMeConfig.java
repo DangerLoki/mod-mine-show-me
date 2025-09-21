@@ -2,6 +2,8 @@ package com.seuusuario.showme;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.seuusuario.showme.components.ButtonScheema.LabeledEnum;
+
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.IOException;
@@ -12,11 +14,21 @@ public class ShowMeConfig {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static final Path CONFIG_PATH = FabricLoader.getInstance().getConfigDir().resolve("show-me.json");
 
-    public enum Position {
-        TOP_LEFT,
-        TOP_RIGHT,
-        BOTTOM_RIGHT,
-        BOTTOM_LEFT
+    public enum Position implements LabeledEnum {
+        TOP_LEFT("key.menu.left"),
+        TOP_RIGHT("key.menu.right"),
+        BOTTOM_RIGHT("key.menu.bottomRight"),
+        BOTTOM_LEFT("key.menu.bottomLeft");
+
+        private final String label;
+
+        Position(String label) {
+            this.label = label;
+        }
+
+        public String getLabel() {
+            return label;
+        }
     }
 
     // Configurações do HUD

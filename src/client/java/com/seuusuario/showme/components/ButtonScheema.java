@@ -9,6 +9,11 @@ import net.minecraft.client.gui.widget.ButtonWidget.PressAction;
 import net.minecraft.text.Text;
 
 public class ButtonScheema {
+
+    public interface LabeledEnum {
+        String getLabel();
+    }
+
     private Function<ButtonWidget, ButtonWidget> f;
     private int x;
     private int y;
@@ -67,15 +72,15 @@ public class ButtonScheema {
         this.y += this.spacing;
     }
 
-    public <T extends Enum<T>> void newToggleButton(String label, Supplier<T> value,
+    public <T extends Enum<T> & LabeledEnum> void newToggleButton(String label, Supplier<T> value,
             Consumer<T> setValue) {
         final T[] values = value.get().getDeclaringClass().getEnumConstants();
 
         this.f.apply(ButtonWidget.builder(
-                Text.translatable(label, value.get().toString()),
+                Text.translatable(label, Text.translatable(value.get().getLabel())),
                 b -> {
                     setValue.accept(values[(value.get().ordinal() + 1) % values.length]);
-                    b.setMessage(Text.translatable(label, value.get().name().toString()));
+                    b.setMessage(Text.translatable(label, Text.translatable(value.get().getLabel())));
                 })
                 .dimensions(this.x - this.width / 2, this.y, this.width, this.height).build());
         this.y += this.spacing;
