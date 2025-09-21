@@ -1,4 +1,4 @@
-package com.seuusuario.showme.components;
+package com.meioQuilo.showme.components;
 
 import java.util.function.Consumer;
 import java.util.function.Function;

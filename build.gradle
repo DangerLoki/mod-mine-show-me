@@ -20,7 +20,7 @@ loom {
 	splitEnvironmentSourceSets()
 
 	mods {
-		"modid" {
+		"show-me" {
 			sourceSet sourceSets.main
 			sourceSet sourceSets.client
 		}

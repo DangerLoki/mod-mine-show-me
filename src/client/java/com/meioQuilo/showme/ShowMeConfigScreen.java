@@ -1,13 +1,13 @@
 // ShowMeConfigScreen.java
-package com.seuusuario.showme;
+package com.meioQuilo.showme;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
 
-import com.seuusuario.showme.ShowMeConfig.Position;
-import com.seuusuario.showme.components.ButtonScheema;
+import com.meioQuilo.showme.ShowMeConfig.Position;
+import com.meioQuilo.showme.components.ButtonScheema;
 
 public class ShowMeConfigScreen extends Screen {
     private final Screen parent;

@@ -1,8 +1,8 @@
-package com.seuusuario.showme;
+package com.meioQuilo.showme;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.seuusuario.showme.components.ButtonScheema.LabeledEnum;
+import com.meioQuilo.showme.components.ButtonScheema.LabeledEnum;
 
 import net.fabricmc.loader.api.FabricLoader;
 
