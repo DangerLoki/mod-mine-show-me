@@ -2,127 +2,110 @@
 
 Language: [English](#english-en) | [Português (BR)](#português-pt-br)
 
----
-
 ## English (EN)
 
-HUD utility mod to display quick in‑game information (coordinates, biome, time, performance and more) in a lightweight and configurable way.
+Lightweight utility HUD to display quick in‑game information (coordinates, biome, time, performance and more) in a configurable way.
 
-### Features
+## Features
 Implemented:
 - Coordinates (XYZ + facing)
 - Light level (block & sky)
 - Current biome
-- World day counter
+- World day (counter)
 - FPS
 - (Base HUD structure)
 
-Planned / In progress:
-- In‑game time (hh:mm)
-- Ping (servers)
-- Memory usage (allocated / used / %)
-- CPU usage (client estimation)
-- GPU info (name / basic)
-- Layout & themes (light / dark / compact)
-- Minimal mode
+## Requirements
+- Minecraft: 1.21.x (define)
+- Fabric Loader: 0.17.x or newer
+- Fabric API: 0.133.x
+- Java: 17
 
-### Requirements
-- Minecraft: 1.xx.x (define)
-- Fabric Loader: 0.xx.x+
-- Fabric API: 0.xx.x
-- Java: 17+
+## Installation (End User)
+1. Download this mod .jar (Release or Builds).
+2. Put it in: .minecraft/mods
+3. Ensure Fabric Loader + Fabric API are present.
+4. Launch the game.
 
-### Installation (User)
-1. Download the mod .jar (Release or CI build).
-2. Drop into .minecraft/mods
-3. Ensure Fabric Loader + Fabric API installed.
-4. Launch game.
-
-### Build (Dev)
-Prerequisites: Java 17, Gradle (wrapper included).
+## Build (Dev)
+Prerequisites: Java 17, Gradle (or included wrapper).
 
 ```bash
+# first time
 ./gradlew build
-# artifact:
-build/libs/<mod-name>-<version>.jar
+# resulting artifact
+build/libs/<show-me>-<version>.jar
 ```
 
-Dev runtime:
+For continuous development:
 ```bash
 ./gradlew runClient
 ```
 
-### Configuration
-(Planned) File: config/mine-show-me.json
-Example (future):
+## Configuration
+(Planned) File: config/mine-show-me.json  
+Future example:
 ```json
 {
   "show_coordinates": true,
   "show_light": true,
   "show_biome": true,
   "show_day": true,
-  "show_clock": true,
-  "show_ping": false,
   "theme": "dark",
   "position": "TOP_LEFT"
 }
 ```
 
-### Performance
-Optimized drawing: avoids recomputing static text every tick.  
-Future ideas:
-- String cache
-- Staggered updates (e.g. ping every 1s)
-
-### Short Roadmap
+## Short Roadmap
 - [ ] Add clock
 - [ ] Add ping
 - [ ] In‑game config GUI
-- [ ] Theme system
-- [ ] Modular widgets
-- [ ] i18n (pt-BR / en-US)
+- [ ] Theming system
+- [ ] Widget modularization
+- [ ] Internationalization (pt-BR / en-US)
 
-### Suggested Structure
+## Suggested Structure (Code)
 - package hud.widgets (each component)
-- WidgetRegistry to register/order
-- Central render loop only calling visible ones
+- WidgetRegistry to register & order
+- Central render loop only calling visible widgets
 
-### Contributing
+## Contributing
 1. Fork
 2. Branch: feature/name
-3. Small descriptive commits
-4. PR with summary + screenshots
+3. Small, descriptive commits
+4. Pull Request with summary + screenshots
 
-Commit convention (suggested):  
+Commit pattern (suggestion):
 feat:, fix:, perf:, docs:, refactor:, build:, chore:, test:
 
-### Testing
-- Overlay with other HUD mods
-- Debug screen F3 coexistence
-- Remote server (ping)
+## Testing
+- Check overlap with other HUD mods
+- Verify debug mode + F3
+- Test on remote server (ping)
 
-### License
-Define (MIT / LGPL / ARR).  
+## License
+To define (e.g.: MIT / LGPL / ARR).  
 (Add LICENSE file later)
 
-### FAQ
-Q: Forge support?  
-A: No, Fabric only.
+## FAQ
+Q: Works on Forge?  
+A: No. Fabric only.
 
-Q: FPS impact?  
-A: Very low.
+Q: Heavy on FPS?  
+A: Lightweight. Minimal text and no heavy loops.
 
-Q: Modpack usage?  
-A: Yes (respect license).
+Q: Can I use it in a modpack?  
+A: Yes (respect chosen license).
 
-### Credits
+## Credits
 Author: (Add)  
 Initial ideas: ideias.txt
 
-### Contact
-(Add GitHub / Discord)
+## Contact
+(Add GitHub / Discord link)
 
 ---
+Update this README as features are completed.
 
 ## Português (PT-BR)
 
@@ -137,20 +120,11 @@ Implementadas:
 - FPS
 - (Estrutura base do HUD)
 
-Planejadas / Em desenvolvimento:
-- Horário do jogo (horas/minutos)
-- Ping (em servidores)
-- Uso de memória (alocada / usada / %)
-- Uso de CPU (estimado - lado cliente)
-- GPU (nome / info básica)
-- Alternar layout e temas (claro/escuro/compacto)
-- Modo minimalista
-
 ## Requisitos
-- Minecraft: 1.xx.x (definir)
-- Fabric Loader: 0.xx.x ou superior
-- Fabric API: 0.xx.x
-- Java: 17+
+- Minecraft: 1.21.x (definir)
+- Fabric Loader: 0.17.x ou superior
+- Fabric API: 0.133.x
+- Java: 17
 
 ## Instalação (Usuário Final)
 1. Baixe o .jar deste mod (Release ou Builds).
@@ -165,7 +139,7 @@ Pré-requisitos: Java 17, Gradle (ou wrapper incluso).
 # primeira vez
 ./gradlew build
 # artefato resultante
-build/libs/<nome-do-mod>-<versão>.jar
+build/libs/<show-me>-<versão>.jar
 ```
 
 Para desenvolvimento contínuo:
@@ -182,18 +156,10 @@ Exemplo (futuro):
   "show_light": true,
   "show_biome": true,
   "show_day": true,
-  "show_clock": true,
-  "show_ping": false,
   "theme": "dark",
   "position": "TOP_LEFT"
 }
 ```
-
-## Desempenho
-Desenho otimizado: evita recalcular textos a cada tick quando não mudam.  
-Sugestões futuras:
-- Cache de strings
-- Atualização escalonada (ex: ping a cada 1s)
 
 ## Roadmap Curto
 - [ ] Adicionar relógio
