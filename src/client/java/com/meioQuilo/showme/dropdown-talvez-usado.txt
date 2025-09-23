@@ -1,5 +1,5 @@
 // ShowMeConfigScreen.java
-package com.seuusuario.showme;
+package com.meioQuilo.showme;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;

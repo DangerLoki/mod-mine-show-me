@@ -12,17 +12,17 @@
 		"sources": "https://github.com/DangerLoki/mod-mine-show-me"
 	},
 	"license": "MIT",
-	"icon": "assets/modid/icon.png",
+	"icon": "assets/show-me/icon.png",
 	"environment": "client",
 	"entrypoints": {
 		"client": [
-			"com.seuusuario.showme.ShowMeClient"
+			"com.meioQuilo.showme.ShowMeClient"
 		]
 	},
 	"mixins": [
-		"modid.mixins.json",
+		"showme.mixins.json",
 		{
-			"config": "modid.client.mixins.json",
+			"config": "showme.client.mixins.json",
 			"environment": "client"
 		}
 	],

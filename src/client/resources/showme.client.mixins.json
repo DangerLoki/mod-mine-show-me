@@ -1,6 +1,6 @@
 {
 	"required": false,
-	"package": "com.seuusuario.showme.mixin.client",
+	"package": "com.meioQuilo.showme.mixin.client",
 	"compatibilityLevel": "JAVA_21",
 	"client": [
 	],

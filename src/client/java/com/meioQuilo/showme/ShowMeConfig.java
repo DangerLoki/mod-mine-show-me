@@ -1,7 +1,9 @@
-package com.seuusuario.showme;
+package com.meioQuilo.showme;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.meioQuilo.showme.components.ButtonScheema.LabeledEnum;
+
 import net.fabricmc.loader.api.FabricLoader;
 
 import java.io.IOException;
@@ -12,6 +14,23 @@ public class ShowMeConfig {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static final Path CONFIG_PATH = FabricLoader.getInstance().getConfigDir().resolve("show-me.json");
 
+    public enum Position implements LabeledEnum {
+        TOP_LEFT("key.menu.left"),
+        TOP_RIGHT("key.menu.right"),
+        BOTTOM_RIGHT("key.menu.bottomRight"),
+        BOTTOM_LEFT("key.menu.bottomLeft");
+
+        private final String label;
+
+        Position(String label) {
+            this.label = label;
+        }
+
+        public String getLabel() {
+            return label;
+        }
+    }
+
     // Configurações do HUD
     public boolean showFps = true;
     public boolean showCoords = false;
@@ -20,6 +39,9 @@ public class ShowMeConfig {
     public boolean showTime = false;
     public boolean showBrightness = false; // novo campo para brilho do bloco/céu
     public boolean showDays = false;
+    public Position togglePosition = Position.TOP_LEFT;
+
+    public boolean showDebug = false;
 
     public static ShowMeConfig load() {
         if (Files.exists(CONFIG_PATH)) {

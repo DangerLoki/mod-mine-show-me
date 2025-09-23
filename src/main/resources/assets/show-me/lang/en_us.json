@@ -11,10 +11,16 @@
 	"key.menu.showBrightness" : "Show Brightness",
 	"key.menu.showDays" : "Show Day",
 	"key.menu.showBiome" : "Show Biome",
+	"key.menu.togglePosition" : "Position: %s",
+	"key.menu.left": "Top Left",
+	"key.menu.right": "Top Right",
+	"key.menu.bottomRight": "Bottom Right",
+	"key.menu.bottomLeft": "Bottom Left",
 	"key.hud.visible" : "Visible",
 	"key.hud.hidden" : "Hidden",
 	"key.hud.day" : "Day: %d",
 	"key.hud.biome" : "Biome: %s",
 	"key.hud.unknownBiome" : "Unknown",
-	"key.hud.brightness" : "Brightness (Block/Sky) %d / %d"
+	"key.hud.brightness" : "Brightness (Block/Sky) %d / %d",
+	"key.menu.showDebug" : "Show Debug Info"
 }

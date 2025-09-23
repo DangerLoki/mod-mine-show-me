@@ -11,10 +11,16 @@
 	"key.menu.showBrightness" : "Mostrar Brilho",
 	"key.menu.showDays" : "Mostrar Dia",
 	"key.menu.showBiome" : "Mostrar Bioma",
+	"key.menu.togglePosition" : "Posição: %s",
+	"key.menu.left": "Superior Esquerdo",
+	"key.menu.right": "Superior Direito",
+	"key.menu.bottomRight": "Inferior Direito",
+	"key.menu.bottomLeft": "Inferior Esquerdo",
 	"key.hud.visible" : "Visível",
 	"key.hud.hidden" : "Oculto",
 	"key.hud.day" : "Dia: %d",
 	"key.hud.biome" : "Bioma: %s",
 	"key.hud.unknownBiome" : "Desconhecido",
-	"key.hud.brightness" : "Luz (Bloco/Céu) %d / %d"
+	"key.hud.brightness" : "Luz (Bloco/Céu) %d / %d",
+	"key.menu.showDebug" : "Mostrar informações de Debug"
 }
