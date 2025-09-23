@@ -42,6 +42,7 @@ public class ShowMeConfig {
     public Position togglePosition = Position.TOP_LEFT;
     public boolean showDebug = false;
     public boolean showMemory = false;
+    public boolean showClock = false;
 
     public static ShowMeConfig load() {
         if (Files.exists(CONFIG_PATH)) {

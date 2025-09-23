@@ -23,6 +23,7 @@ public class ShowMeConfigScreen extends Screen {
     private boolean showMemory;
 
     private boolean showDebug;
+    private boolean showClock; 
 
     protected ShowMeConfigScreen(Screen parent) {
         super(Text.literal("Show Me - Configurações"));
@@ -41,6 +42,7 @@ public class ShowMeConfigScreen extends Screen {
         this.togglePosition = ShowMeClient.CONFIG.togglePosition;
         this.showDebug = ShowMeClient.CONFIG.showDebug;
         this.showMemory = ShowMeClient.CONFIG.showMemory;
+        this.showClock = ShowMeClient.CONFIG.showClock; // CORRIGIDO
 
         int centerX = this.width / 2;
 
@@ -58,6 +60,8 @@ public class ShowMeConfigScreen extends Screen {
         bs.newSwitchButton("key.menu.showBrightness", () -> showBrightness, v -> showBrightness = v);
 
         bs.newSwitchButton("key.menu.showDays", () -> showDays, v -> showDays = v);
+
+        bs.newSwitchButton("key.menu.showClock", () -> showClock, v -> showClock = v);
 
         bs.newSwitchButton("key.menu.showBiome", () -> showBiome, v -> showBiome = v);
 
@@ -80,6 +84,7 @@ public class ShowMeConfigScreen extends Screen {
             ShowMeClient.CONFIG.showPing = showPing;
             ShowMeClient.CONFIG.showMemory = showMemory;
             ShowMeClient.CONFIG.showDebug = showDebug;
+            ShowMeClient.CONFIG.showClock = showClock;
             ShowMeConfig.save(ShowMeClient.CONFIG);
             close();
         }, centerX - 100, bs.getY(), 95, 20);

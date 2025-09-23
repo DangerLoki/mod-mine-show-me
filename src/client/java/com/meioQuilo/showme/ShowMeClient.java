@@ -96,6 +96,14 @@ public class ShowMeClient implements ClientModInitializer {
             lines.add(Text.translatable("key.hud.day", days).getString());
         }
 
+        if (CONFIG.showClock) {
+            long t = mc.world.getTimeOfDay();
+            long tod = t % 24000L;
+            int hour = (int)((tod / 1000L + 6) % 24);
+            int minute = (int)((tod % 1000L) * 60 / 1000L);
+            lines.add(Text.translatable("key.hud.time", hour, minute).getString());
+        }
+
         if (CONFIG.showBiome) {
             var biome = mc.world.getBiome(mc.player.getBlockPos())
                     .getKey()
@@ -126,6 +134,8 @@ public class ShowMeClient implements ClientModInitializer {
             long percent = max > 0 ? (used * 100 / max) : 0;
             lines.add(Text.translatable("key.hud.memory", usedMB, maxMB, percent).getString());
         }
+
+
 
         if (lines.isEmpty())
             return;
