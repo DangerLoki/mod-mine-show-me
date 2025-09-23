@@ -24,5 +24,7 @@
 	"key.hud.brightness" : "Brightness (Block/Sky) %d / %d",
 	"key.menu.showDebug" : "Show Debug Info",
 	"key.menu.showPing": "Show Ping",
-	"key.hud.ping": "Ping: %s ms"
+	"key.hud.ping": "Ping: %s ms",
+	"key.menu.showMemory": "Show Memory",
+  	"key.hud.memory": "Mem: %d / %d MB (%d%%)"
 }

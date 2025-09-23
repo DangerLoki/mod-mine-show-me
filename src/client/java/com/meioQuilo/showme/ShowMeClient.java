@@ -115,6 +115,18 @@ public class ShowMeClient implements ClientModInitializer {
             }
         }
 
+        if (CONFIG.showMemory) {
+            Runtime rt = Runtime.getRuntime();
+            long max = rt.maxMemory();
+            long total = rt.totalMemory();
+            long free = rt.freeMemory();
+            long used = total - free;
+            long usedMB = used / (1024 * 1024);
+            long maxMB = max / (1024 * 1024);
+            long percent = max > 0 ? (used * 100 / max) : 0;
+            lines.add(Text.translatable("key.hud.memory", usedMB, maxMB, percent).getString());
+        }
+
         if (lines.isEmpty())
             return;
         int width = ctx.getScaledWindowWidth();

@@ -20,6 +20,7 @@ public class ShowMeConfigScreen extends Screen {
     private boolean showBiome;
     private boolean showPing;
     private Position togglePosition;
+    private boolean showMemory;
 
     private boolean showDebug;
 
@@ -39,6 +40,7 @@ public class ShowMeConfigScreen extends Screen {
         this.showPing = ShowMeClient.CONFIG.showPing; 
         this.togglePosition = ShowMeClient.CONFIG.togglePosition;
         this.showDebug = ShowMeClient.CONFIG.showDebug;
+        this.showMemory = ShowMeClient.CONFIG.showMemory;
 
         int centerX = this.width / 2;
 
@@ -63,6 +65,8 @@ public class ShowMeConfigScreen extends Screen {
 
         bs.newSwitchButton("key.menu.showDebug", () -> showDebug, v -> showDebug = v);
 
+        bs.newSwitchButton("key.menu.showMemory", () -> showMemory, v -> showMemory = v);
+
         bs.setSpacing(32); // Ultimo botão precisa ter um espaçamento maior
         bs.newToggleButton("key.menu.togglePosition", () -> togglePosition, v -> togglePosition = v);
 
@@ -74,6 +78,7 @@ public class ShowMeConfigScreen extends Screen {
             ShowMeClient.CONFIG.showBiome = showBiome;
             ShowMeClient.CONFIG.togglePosition = togglePosition;
             ShowMeClient.CONFIG.showPing = showPing;
+            ShowMeClient.CONFIG.showMemory = showMemory;
             ShowMeClient.CONFIG.showDebug = showDebug;
             ShowMeConfig.save(ShowMeClient.CONFIG);
             close();
