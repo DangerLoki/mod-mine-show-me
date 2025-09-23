@@ -22,5 +22,7 @@
 	"key.hud.biome" : "Bioma: %s",
 	"key.hud.unknownBiome" : "Desconhecido",
 	"key.hud.brightness" : "Luz (Bloco/Céu) %d / %d",
-	"key.menu.showDebug" : "Mostrar informações de Debug"
+	"key.menu.showDebug" : "Mostrar informações de Debug",
+	"key.menu.showPing": "Mostrar Ping",
+	"key.hud.ping": "Ping: %s ms"
 }

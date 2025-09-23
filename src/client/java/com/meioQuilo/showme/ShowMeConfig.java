@@ -35,13 +35,13 @@ public class ShowMeConfig {
     public boolean showFps = true;
     public boolean showCoords = false;
     public boolean showBiome = false;
-    public boolean showPing = false;
+    public boolean showPing = false; 
     public boolean showTime = false;
-    public boolean showBrightness = false; // novo campo para brilho do bloco/céu
+    public boolean showBrightness = false;
     public boolean showDays = false;
     public Position togglePosition = Position.TOP_LEFT;
-
     public boolean showDebug = false;
+    public boolean showMemory = false;
 
     public static ShowMeConfig load() {
         if (Files.exists(CONFIG_PATH)) {

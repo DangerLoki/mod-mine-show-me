@@ -104,6 +104,17 @@ public class ShowMeClient implements ClientModInitializer {
             lines.add(Text.translatable("key.hud.biome", biome).getString());
         }
 
+        if (CONFIG.showPing){
+            var handler = mc.getNetworkHandler();
+            if (handler != null){
+                var entry = handler.getPlayerListEntry(mc.player.getUuid());
+                if (entry != null){
+                    int latency = entry.getLatency();
+                    lines.add(Text.translatable("key.hud.ping", latency).getString());
+                }
+            }
+        }
+
         if (lines.isEmpty())
             return;
         int width = ctx.getScaledWindowWidth();
