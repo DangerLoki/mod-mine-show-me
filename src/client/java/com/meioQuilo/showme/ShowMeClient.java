@@ -135,6 +135,16 @@ public class ShowMeClient implements ClientModInitializer {
             lines.add(Text.translatable("key.hud.memory", usedMB, maxMB, percent).getString());
         }
 
+        // NOVO: exibir seed do mundo
+        if (CONFIG.showSeed) {
+            String seedText = "???";
+            if (mc.getServer() != null) { // singleplayer (integrated server)
+                long seed = mc.getServer().getOverworld().getSeed();
+                seedText = String.valueOf(seed);
+            }
+            lines.add(Text.translatable("key.hud.seed", seedText).getString());
+        }
+
 
 
         if (lines.isEmpty())

@@ -28,5 +28,7 @@
 	"key.menu.showMemory": "Mostrar Memória",
   	"key.hud.memory": "Mem: %d / %d MB (%d%%)",
 	"key.menu.showClock": "Mostrar Relógio",
-	"key.hud.time": "Hora: %02d:%02d"
+	"key.hud.time": "Hora: %02d:%02d",
+	"key.menu.showSeed": "Mostrar Seed",
+	"key.hud.seed": "Seed: %s"
 }
