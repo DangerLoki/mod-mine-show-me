@@ -14,11 +14,11 @@ public class ShowMeConfig {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static final Path CONFIG_PATH = FabricLoader.getInstance().getConfigDir().resolve("show-me.json");
 
-    public enum Position implements LabeledEnum {
-        TOP_LEFT("key.menu.left"),
-        TOP_RIGHT("key.menu.right"),
-        BOTTOM_RIGHT("key.menu.bottomRight"),
-        BOTTOM_LEFT("key.menu.bottomLeft");
+    public enum Position implements LabeledEnum {  // antes: implements ButtonScheema.LabeledEnum
+        TOP_LEFT("Top Left"),
+        TOP_RIGHT("Top Right"),
+        BOTTOM_LEFT("Bottom Left"),
+        BOTTOM_RIGHT("Bottom Right");
 
         private final String label;
 
@@ -26,7 +26,8 @@ public class ShowMeConfig {
             this.label = label;
         }
 
-        public String getLabel() {
+        @Override
+        public String label() {
             return label;
         }
     }

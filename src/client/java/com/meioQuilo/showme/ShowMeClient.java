@@ -145,8 +145,6 @@ public class ShowMeClient implements ClientModInitializer {
             lines.add(Text.translatable("key.hud.seed", seedText).getString());
         }
 
-
-
         if (lines.isEmpty())
             return;
         int width = ctx.getScaledWindowWidth();
