@@ -11,7 +11,7 @@
 	"key.menu.showBrightness" : "Show Brightness",
 	"key.menu.showDays" : "Show Day",
 	"key.menu.showBiome" : "Show Biome",
-	"key.menu.togglePosition" : "Position: %s",
+	"key.menu.togglePosition" : "Position",
 	"key.menu.left": "Top Left",
 	"key.menu.right": "Top Right",
 	"key.menu.bottomRight": "Bottom Right",

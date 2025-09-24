@@ -15,10 +15,10 @@ public class ShowMeConfig {
     private static final Path CONFIG_PATH = FabricLoader.getInstance().getConfigDir().resolve("show-me.json");
 
     public enum Position implements LabeledEnum {  // antes: implements ButtonScheema.LabeledEnum
-        TOP_LEFT("Top Left"),
-        TOP_RIGHT("Top Right"),
-        BOTTOM_LEFT("Bottom Left"),
-        BOTTOM_RIGHT("Bottom Right");
+        TOP_LEFT("key.menu.left"),
+        TOP_RIGHT("key.menu.right"),
+        BOTTOM_LEFT("key.menu.bottomLeft"),
+        BOTTOM_RIGHT("key.menu.bottomRight");
 
         private final String label;
 

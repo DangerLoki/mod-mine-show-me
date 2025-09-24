@@ -105,8 +105,13 @@ public class ButtonScheema {
     public <E extends Enum<E>> ButtonWidget newToggleButton(String key,
                                                             Supplier<E> getter,
                                                             Consumer<E> setter) {
-        java.util.function.Supplier<Text> msg = () ->
-                Text.translatable(key).append(": ").append(Text.literal(formatEnum(getter.get())));
+        java.util.function.Supplier<Text> msg = () -> {
+            E val = getter.get();
+            Text valueText = (val instanceof LabeledEnum)
+                    ? Text.translatable(((LabeledEnum) val).label())
+                    : Text.literal(formatEnum(val));
+            return Text.translatable(key).append(": ").append(valueText);
+        };
 
         return baseButton(msg.get(), b -> {
             E val = getter.get();
