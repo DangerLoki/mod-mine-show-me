@@ -75,7 +75,7 @@ public class ShowMeConfigScreen extends Screen {
         this.rowSpacing = Math.max(6, screenH / 80);
 
         int horizontalPadding = Math.max(12, screenW / 20);
-        this.listWidth = Math.max(220, screenW - horizontalPadding * 2);
+        this.listWidth = Math.max(160, (int)(screenW * 0.3));
         this.listLeft = (screenW - listWidth) / 2;
         this.listTop = Math.max(40, screenH / 14);
         

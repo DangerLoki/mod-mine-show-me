@@ -135,7 +135,7 @@ public class ShowMeClient implements ClientModInitializer {
             lines.add(Text.translatable("key.hud.memory", usedMB, maxMB, percent).getString());
         }
 
-        // NOVO: exibir seed do mundo
+        // exibir seed do mundo
         if (CONFIG.showSeed) {
             String seedText = "???";
             if (mc.getServer() != null) { // singleplayer (integrated server)
@@ -176,7 +176,9 @@ public class ShowMeClient implements ClientModInitializer {
             if (w > maxWidth)
                 maxWidth = w;
         }
+        
         int totalHeight = lines.size() * font.fontHeight + (lines.size() - 1) * lineSpacing;
+        
         // Calcula posição inicial com margin
         int x, y;
         switch (CONFIG.togglePosition) {
